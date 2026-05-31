@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Catechism of Perseverance — with Father Emily</title>
+<!-- ============================================================
+     A CATECHISM OF PERSEVERANCE — public title-page site
+     ------------------------------------------------------------
+     HOW TO ADD A CLASS:
+       1. Find the <ol class="lessons"> list below.
+       2. Copy ONE whole <li class="lesson"> ... </li> block.
+       3. Paste it as the FIRST item in the list (newest on top).
+       4. Edit these:
+            data-date   : YYYY-MM-DD  (keep this exact format)
+            .l-date     : the date as you want it shown
+            .l-title    : the lesson title
+            href        : the video link (see VIDEO LINK below)
+            aria-label  : change "this lesson" to the lesson title
+       5. (Optional) edit .l-note for a one-line description.
+       6. Save, commit, push. GitHub Pages publishes it.
+
+     VIDEO LINK — best practice:
+       - Use the SharePoint share link set to "Anyone with the link"
+         so the public can watch with no sign-in.
+       - Paste the FULL share URL into href exactly as SharePoint gives
+         it. Do not trim or "clean up" the link — the long token in it
+         is what authorizes anonymous viewing.
+       - Test every new link in a private/incognito browser window
+         (where you are NOT signed in) before considering it published.
+         If it plays there, the public can see it. If it asks you to
+         sign in, the share setting is wrong — fix it in SharePoint.
+       - Links open in a new tab so viewers keep their place on this
+         page. That is intentional; leave target="_blank" alone.
+     ============================================================ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --leather:   #15100b;   /* deep aged-leather ground            */
+    --leather-2: #1d160e;   /* slightly lifted panel ground        */
+    --vellum:    #ece0c8;   /* aged ivory body text (ink on vellum)*/
+    --vellum-soft:#a99a7c;  /* muted secondary text                */
+    --gold:      #c9a14a;   /* gilding                             */
+    --gold-lit:  #e2c071;   /* brighter gilding for emphasis       */
+    --gold-deep: #8a6c2c;   /* shadow side of gilding              */
+    --oxblood:   #9c3b46;   /* rubric red                          */
+    --rule:      #3a2c1a;   /* warm hairline                       */
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{ -webkit-text-size-adjust:100%; }
+  body{
+    font-family:'EB Garamond', Georgia, serif;
+    color:var(--vellum); line-height:1.6;
+    background:
+      radial-gradient(ellipse 80% 50% at 50% 0%, rgba(201,161,74,0.10), transparent 60%),
+      radial-gradient(ellipse 90% 60% at 50% 100%, rgba(156,59,70,0.07), transparent 60%),
+      radial-gradient(ellipse 120% 90% at 50% 45%, #1d160e, var(--leather) 75%);
+    min-height:100vh;
+    padding:clamp(2rem,5vw,5rem) clamp(1rem,5vw,3rem) 4rem;
+    /* faint laid-paper texture via layered hairlines */
+    background-attachment:fixed;
+  }
+
+  /* ruled frame, like a missal margin */
+  .page{
+    max-width:48rem; margin:0 auto;
+    border:1px solid var(--rule);
+    box-shadow:0 0 0 1px rgba(201,161,74,0.10) inset,
+               0 30px 80px rgba(0,0,0,0.5);
+    padding:clamp(2rem,5vw,4rem) clamp(1.4rem,5vw,4rem);
+    position:relative;
+    background:
+      linear-gradient(rgba(29,22,14,0.4), rgba(21,16,11,0.4));
+  }
+  .page::before{
+    content:''; position:absolute; inset:0.5rem;
+    border:1px solid rgba(201,161,74,0.18);
+    pointer-events:none;
+  }
+
+  /* ---------- Title page ---------- */
+  .titlepage{ text-align:center; padding:1rem 0 1.5rem; }
+
+  .emblem-head{
+    width:auto; height:clamp(150px,32vw,230px); display:block;
+    margin:0 auto 1.6rem;
+    filter:drop-shadow(0 0 22px rgba(201,161,74,0.20));
+  }
+
+  .work{
+    font-family:'Cormorant Garamond', serif; font-weight:600;
+    font-size:clamp(2.2rem,6.5vw,3.6rem); line-height:1.04;
+    letter-spacing:0.01em; color:var(--vellum);
+  }
+  .article-the{
+    display:block; font-size:0.42em; letter-spacing:0.32em;
+    text-transform:uppercase; color:var(--gold); font-weight:600;
+    margin-bottom:0.35rem;
+  }
+  .subtitle{
+    font-family:'Cormorant Garamond', serif; font-style:italic;
+    font-weight:500; color:var(--gold-lit);
+    font-size:clamp(1.2rem,3.2vw,1.7rem); margin-top:0.5rem;
+  }
+  .titlepage-quote{ margin-top:2rem; }
+
+  .divider{
+    display:flex; align-items:center; justify-content:center; gap:1rem;
+    margin:2.2rem auto; color:var(--gold);
+  }
+  .divider::before, .divider::after{
+    content:''; height:1px; flex:1 1 6rem; max-width:9rem;
+    background:linear-gradient(90deg, transparent, var(--gold-deep));
+  }
+  .divider::after{ background:linear-gradient(90deg, var(--gold-deep), transparent); }
+  .divider span{ font-size:0.85rem; letter-spacing:0.2em; }
+
+  /* ---------- The letter ---------- */
+  .letter{ font-size:clamp(1.04rem,2.3vw,1.14rem); }
+  .letter p{ margin-bottom:1rem; text-align:justify; hyphens:auto; }
+
+  .letter > p:first-of-type::first-letter{
+    font-family:'Cormorant Garamond', serif; font-weight:600;
+    float:left; font-size:3.4em; line-height:0.78;
+    padding:0.06em 0.12em 0 0; color:var(--gold-lit);
+  }
+
+  .letter .lead-in{ color:var(--vellum-soft); }
+
+  blockquote{
+    font-style:italic; color:var(--gold-lit);
+    border-left:2px solid var(--gold-deep);
+    margin:1.3rem 0 1.3rem 0.5rem; padding:0.2rem 0 0.2rem 1.3rem;
+  }
+
+  .signoff{ margin-top:1.5rem; }
+  .signoff .closing{ margin-bottom:0.6rem; }
+  .signoff .name{
+    font-family:'Cormorant Garamond', serif; font-weight:600;
+    font-size:1.3rem; color:var(--vellum); display:block; line-height:1.2;
+  }
+  .signoff .role{ color:var(--vellum-soft); font-variant:small-caps; letter-spacing:0.08em; }
+
+  /* ---------- Lesson index ---------- */
+  .index-head{
+    text-align:center; margin:2.6rem 0 1.6rem;
+  }
+  .index-head h2{
+    font-family:'Cormorant Garamond', serif; font-weight:600;
+    font-size:clamp(1.5rem,4vw,2rem); color:var(--gold-lit);
+    letter-spacing:0.02em;
+  }
+  .index-head .sub{
+    font-style:italic; color:var(--vellum-soft); font-size:0.98rem; margin-top:0.2rem;
+  }
+
+  ol.lessons{ list-style:none; }
+  li.lesson{
+    display:flex; align-items:baseline; gap:1.2rem;
+    padding:1rem 0.6rem; border-bottom:1px solid var(--rule);
+    position:relative; transition:background .2s ease;
+  }
+  li.lesson:first-child{ border-top:1px solid var(--rule); }
+  li.lesson:hover{ background:rgba(201,161,74,0.045); }
+  li.lesson .l-date{
+    flex:0 0 6.5rem;
+    font-variant:small-caps; letter-spacing:0.06em;
+    color:var(--gold); font-size:0.92rem; padding-top:0.12rem;
+  }
+  li.lesson .l-body{ flex:1 1 auto; min-width:0; }
+  li.lesson .l-title{
+    font-family:'Cormorant Garamond', serif; font-weight:600;
+    font-size:1.3rem; line-height:1.18; color:var(--vellum);
+  }
+  li.lesson .l-note{ color:var(--vellum-soft); font-size:0.98rem; margin-top:0.1rem; font-style:italic; }
+  li.lesson .l-watch{
+    flex:0 0 auto; align-self:center; text-decoration:none;
+    font-variant:small-caps; letter-spacing:0.07em; font-size:0.95rem;
+    color:var(--gold-lit); border:1px solid var(--gold-deep);
+    padding:0.4rem 1.1rem; border-radius:1px; white-space:nowrap;
+    display:inline-flex; align-items:center; gap:0.45rem;
+    transition:background .2s ease, color .2s ease, border-color .2s ease;
+  }
+  li.lesson .l-play{ font-size:0.7em; line-height:1; }
+  li.lesson .l-watch:hover{ background:var(--gold); color:var(--leather); border-color:var(--gold); }
+  li.lesson .l-watch:focus-visible{ outline:2px solid var(--gold-lit); outline-offset:2px; }
+
+  /* ---------- Colophon: twin hearts + Pius X ---------- */
+  .colophon{ margin-top:3rem; text-align:center; }
+  .emblem-hearts{
+    width:clamp(130px,30vw,190px); height:auto; display:block;
+    margin:0 auto 1.6rem;
+    filter:drop-shadow(0 0 18px rgba(201,161,74,0.18));
+  }
+
+  .source-quote{
+    font-style:italic; color:var(--vellum-soft);
+    font-size:1.02rem; max-width:36rem; margin:0 auto;
+    text-align:justify; hyphens:auto;
+  }
+  .source-cite{
+    display:block; margin-top:0.7rem; font-style:normal; text-align:center;
+    font-variant:small-caps; letter-spacing:0.06em;
+    color:var(--gold); font-size:0.92rem;
+  }
+  .benediction{
+    margin-top:2rem; font-family:'Cormorant Garamond', serif;
+    font-style:italic; color:var(--gold-lit); font-size:1.1rem;
+  }
+
+  /* ---------- Mobile ---------- */
+  @media (max-width:560px){
+    li.lesson{ flex-wrap:wrap; gap:0.4rem 1rem; }
+    li.lesson .l-date{ flex-basis:100%; }
+    li.lesson .l-watch{ align-self:flex-start; }
+    .letter p{ text-align:left; }
+  }
+</style>
+</head>
+<body>
+<main class="page">
+
+  <!-- ===================== TITLE PAGE ===================== -->
+  <section class="titlepage">
+
+    <!-- Sacred Heart of Jesus surmounting an ornate cross with gloria rays.
+         Sourced gilt image on transparent ground. -->
+    <img class="emblem-head" src="sacred-heart-cross.png"
+         alt="The Sacred Heart of Jesus crowned with thorns, surmounting an ornate cross within rays of glory"
+         width="700" height="1061">
+
+    <h1 class="work"><span class="article-the">A</span>Catechism of Perseverance</h1>
+    <p class="subtitle">with Father Emily</p>
+
+    <p class="source-quote titlepage-quote">"We are forced to agree with those who
+      hold that the chief cause of the present indifference and, as it were,
+      infirmity of soul, and the serious evils that result from it, is to be found
+      above all in ignorance of things divine&hellip; St. Paul places the foundation
+      of holiness and sound morals upon a knowledge of divine things which holds in
+      check evil desires."
+      <span class="source-cite">St. Pius X &middot; Encyclical Acerbo Nimis</span>
+    </p>
+  </section>
+
+  <div class="divider"><span>&#10015;</span></div>
+
+  <!-- ===================== THE LETTER ===================== -->
+  <section class="letter">
+    <p>This class will benefit all the members of the family to refresh their
+      memory and help them to better know their Faith. A better knowledge of the
+      Mysteries of our Faith will increase our Love for God and our zeal to work
+      our sanctification and the sanctification of our families.</p>
+
+    <p class="lead-in">As St. Ignatius of Loyola says:</p>
+    <blockquote>"Here it will be to ask for an intimate knowledge of Our Lord,
+      who has become man for me, that I may love Him more and follow Him more
+      closely."</blockquote>
+
+    <p>May our dear parents encourage their children, especially the teenagers,
+      who have received the sacrament of Confirmation, to attend this class of
+      Catechism of Perseverance for the good of their souls.</p>
+
+    <div class="signoff">
+      <p class="closing">Sincerely yours in Jesus, Mary, and Joseph,</p>
+      <span class="name">Fr. Jacques Emily</span>
+      <span class="role">Pastor</span>
+    </div>
+  </section>
+
+  <!-- ===================== LESSON INDEX ===================== -->
+  <div class="index-head">
+    <h2>Order of Lessons</h2>
+  </div>
+
+  <ol class="lessons">
+
+    <!-- ===== LESSON TEMPLATE — copy this block, newest on top ===== -->
+    <li class="lesson" data-date="2026-06-05">
+      <span class="l-date">5 June 2026</span>
+      <div class="l-body">
+        <div class="l-title">Lesson title goes here</div>
+        <div class="l-note">Optional one-line description.</div>
+      </div>
+      <a class="l-watch" href="#REPLACE-WITH-VIDEO-URL" target="_blank" rel="noopener noreferrer" aria-label="Watch this lesson (opens in a new tab)"><span class="l-play" aria-hidden="true">&#9658;</span> Watch</a>
+    </li>
+    <!-- ===== end lesson ===== -->
+
+    <li class="lesson" data-date="2026-05-29">
+      <span class="l-date">29 May 2026</span>
+      <div class="l-body">
+        <div class="l-title">Lesson title goes here</div>
+        <div class="l-note">Optional one-line description.</div>
+      </div>
+      <a class="l-watch" href="#REPLACE-WITH-VIDEO-URL" target="_blank" rel="noopener noreferrer" aria-label="Watch this lesson (opens in a new tab)"><span class="l-play" aria-hidden="true">&#9658;</span> Watch</a>
+    </li>
+
+    <li class="lesson" data-date="2026-05-22">
+      <span class="l-date">22 May 2026</span>
+      <div class="l-body">
+        <div class="l-title">Lesson title goes here</div>
+        <div class="l-note">Optional one-line description.</div>
+      </div>
+      <a class="l-watch" href="#REPLACE-WITH-VIDEO-URL" target="_blank" rel="noopener noreferrer" aria-label="Watch this lesson (opens in a new tab)"><span class="l-play" aria-hidden="true">&#9658;</span> Watch</a>
+    </li>
+
+  </ol>
+
+  <!-- ===================== COLOPHON ===================== -->
+  <section class="colophon">
+
+    <!-- Auspice Maria — the interlaced AM monogram ("under Mary's protection"),
+         crowned and surmounted by a cross, within the twelve stars (Apoc. 12:1).
+         Sourced gilt image on transparent ground. -->
+    <img class="emblem-hearts" src="auspice-maria.png"
+         alt="Auspice Maria — the monogram of the Blessed Virgin Mary, under whose protection this work is placed"
+         width="600" height="695">
+
+    <p class="benediction">Auspice Maria</p>
+  </section>
+
+</main>
+</body>
+</html>
