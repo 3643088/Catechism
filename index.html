@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>A Catechism of Perseverance — with Father Emily</title>
+<title>Catechism with Father Emily</title>
 <!-- ============================================================
      A CATECHISM OF PERSEVERANCE — public title-page site
      ------------------------------------------------------------
@@ -17,7 +17,7 @@
             .l-title    : the lesson title
             href        : the video link (see VIDEO LINK below)
             aria-label  : change "this lesson" to the lesson title
-       5. (Optional) edit .l-note for a one-line description.
+       5. (Optional) add a Resources list and/or a Quote-or-Verse block.
        6. Save, commit, push. GitHub Pages publishes it.
 
      VIDEO LINK — best practice:
@@ -92,18 +92,13 @@
 
   .work{
     font-family:'Cormorant Garamond', serif; font-weight:600;
-    font-size:clamp(2.2rem,6.5vw,3.6rem); line-height:1.04;
+    font-size:clamp(2.4rem,7vw,4rem); line-height:1.04;
     letter-spacing:0.01em; color:var(--vellum);
   }
-  .article-the{
-    display:block; font-size:0.42em; letter-spacing:0.32em;
-    text-transform:uppercase; color:var(--gold); font-weight:600;
-    margin-bottom:0.35rem;
-  }
-  .subtitle{
-    font-family:'Cormorant Garamond', serif; font-style:italic;
-    font-weight:500; color:var(--gold-lit);
-    font-size:clamp(1.2rem,3.2vw,1.7rem); margin-top:0.5rem;
+  .work .with{
+    display:inline-block; margin-top:0.3rem;
+    font-size:0.5em; font-weight:500; font-style:italic;
+    color:var(--gold-lit); letter-spacing:0.02em;
   }
   .titlepage-quote{ margin-top:2rem; }
 
@@ -157,10 +152,24 @@
     font-style:italic; color:var(--vellum-soft); font-size:0.98rem; margin-top:0.2rem;
   }
 
+  .lesson-search{ max-width:30rem; margin:0 auto 1.4rem; }
+  .lesson-search input{
+    width:100%; background:#120d08; color:var(--vellum);
+    border:1px solid var(--rule); border-radius:3px;
+    padding:0.6rem 0.9rem; font-family:'EB Garamond', Georgia, serif;
+    font-size:1rem; transition:border-color .2s ease;
+  }
+  .lesson-search input::placeholder{ color:var(--vellum-soft); font-style:italic; }
+  .lesson-search input:focus{ outline:none; border-color:var(--gold); }
+  .search-empty{
+    text-align:center; color:var(--vellum-soft); font-style:italic;
+    margin:1.5rem auto;
+  }
+
   ol.lessons{ list-style:none; }
   li.lesson{
-    display:flex; align-items:baseline; gap:1.2rem;
-    padding:1rem 0.6rem; border-bottom:1px solid var(--rule);
+    display:flex; align-items:flex-start; gap:1.2rem;
+    padding:1.1rem 0.6rem; border-bottom:1px solid var(--rule);
     position:relative; transition:background .2s ease;
   }
   li.lesson:first-child{ border-top:1px solid var(--rule); }
@@ -175,9 +184,31 @@
     font-family:'Cormorant Garamond', serif; font-weight:600;
     font-size:1.3rem; line-height:1.18; color:var(--vellum);
   }
-  li.lesson .l-note{ color:var(--vellum-soft); font-size:0.98rem; margin-top:0.1rem; font-style:italic; }
+
+  /* optional per-lesson resources + quote/verse */
+  li.lesson .l-resources{
+    margin-top:0.7rem; font-size:0.95rem; color:var(--vellum-soft);
+  }
+  li.lesson .l-resources .l-res-label{
+    font-variant:small-caps; letter-spacing:0.07em; color:var(--gold);
+    font-size:0.85rem; display:block; margin-bottom:0.25rem;
+  }
+  li.lesson .l-resources ul{ list-style:none; }
+  li.lesson .l-resources li{ margin-bottom:0.2rem; padding-left:1rem; text-indent:-1rem; }
+  li.lesson .l-resources li::before{ content:'\2014\00a0'; color:var(--gold-deep); }
+  li.lesson .l-verse{
+    margin-top:0.8rem; padding:0.2rem 0 0.2rem 1rem;
+    border-left:2px solid var(--gold-deep);
+    font-style:italic; color:var(--gold-lit); font-size:1rem; line-height:1.5;
+  }
+  li.lesson .l-verse cite{
+    display:block; margin-bottom:0.4rem; font-style:normal;
+    font-variant:small-caps; letter-spacing:0.05em;
+    color:var(--gold); font-size:0.85rem;
+  }
+
   li.lesson .l-watch{
-    flex:0 0 auto; align-self:center; text-decoration:none;
+    flex:0 0 auto; align-self:flex-start; text-decoration:none;
     font-variant:small-caps; letter-spacing:0.07em; font-size:0.95rem;
     color:var(--gold-lit); border:1px solid var(--gold-deep);
     padding:0.4rem 1.1rem; border-radius:1px; white-space:nowrap;
@@ -215,8 +246,13 @@
   @media (max-width:560px){
     li.lesson{ flex-wrap:wrap; gap:0.4rem 1rem; }
     li.lesson .l-date{ flex-basis:100%; }
-    li.lesson .l-watch{ align-self:flex-start; }
+    li.lesson .l-body{ flex-basis:100%; }
+    li.lesson .l-watch{
+      align-self:stretch; width:100%; justify-content:center;
+      margin-top:0.6rem; padding:0.6rem 1rem;
+    }
     .letter p{ text-align:left; }
+    .page::before{ inset:0.35rem; }
   }
 </style>
 </head>
@@ -232,8 +268,7 @@
          alt="The Sacred Heart of Jesus crowned with thorns, surmounting an ornate cross within rays of glory"
          width="700" height="1061">
 
-    <h1 class="work"><span class="article-the">A</span>Catechism of Perseverance</h1>
-    <p class="subtitle">with Father Emily</p>
+    <h1 class="work">Catechism<br><span class="with">with Father Emily</span></h1>
 
     <p class="source-quote titlepage-quote">"We are forced to agree with those who
       hold that the chief cause of the present indifference and, as it were,
@@ -275,91 +310,58 @@
     <h2>Order of Lessons</h2>
   </div>
 
+  <div class="lesson-search">
+    <input type="search" id="lessonSearch" placeholder="Search lessons by title, source, or verse&hellip;"
+           aria-label="Search lessons" autocomplete="off">
+  </div>
+  <p class="search-empty" id="searchEmpty" hidden>No lessons match your search.</p>
+
   <ol class="lessons">
 
-    <!-- ===== LESSON TEMPLATE — copy this block, newest on top ===== -->
-    <li class="lesson" data-date="2026-05-27">
-      <span class="l-date">27 May 2026</span>
+    <!-- ===== LESSON TEMPLATE — copy this block, newest on top =====
+         The l-resources and l-verse blocks are OPTIONAL.
+         Delete either you don't need for a given lesson. Keep title + watch. -->
+    <li class="lesson" data-date="2026-06-05">
+      <span class="l-date">5 June 2026</span>
       <div class="l-body">
-        <div class="l-title">Subject: The Sacrament of Marriage – 1st Part: The nature of marriage. </div>
-        <div class="l-note">Brief Catechism for Adults: Lesson 29, p. 107 
-       <br>Compendium of the Catholic Church: Part III, Section 3, Ch. 13, pgs. 298 - 308     
-     <br><br>Quote from Archbishop M. Lefebvre: <br>
-" It is very important to think about the fact that our Lord Jesus Christ chose to work His first miracle during a marriage. The Church has always considered that presence of our Lord at the wedding feast of Cana as the sanctification of marriage and the manifestation of the institution of the sacrament of marriage."
-     
-             .</div>
-      </div>
-      <a class="l-watch" href="https://bowlesfamilyfarm.sharepoint.com/:v:/s/WednesdayNightCatechism/IQDHkXHcsRwUQoX-_bAQRSKzAUCds8VyYDIP1YV7XriFpz8?e=4C6LwV" target="_blank" rel="noopener noreferrer" aria-label="Watch this lesson (opens in a new tab)"><span class="l-play" aria-hidden="true">&#9658;</span> Watch</a>
-    </li>
-    <!-- ===== end lesson ===== -->
-       
-     <li class="lesson" data-date="2026-05-20">
-      <span class="l-date">20 May 2026</span>
-      <div class="l-body">
-        <div class="l-title">Subject: The Sacrament of Holy Orders (Priesthood)</div>
-        <div class="l-note">Brief Catechism for Adults: Lesson 28, p. 102
-<br>Compendium of the Catholic Church: Part III, Section 3, Ch. 12, pgs. 288 - 298
-<br><br>Quote from Archbishop M. Lefebvre:  <br> 
-        
-"What is the priesthood? Is it not the participation of a man, chosen by God, in the great mystery of our Lord Jesus Christ? And if the priesthood truly is this union of a human creature with the mystery of Our Lord Jesus Christ, how could there be any limit to our reflections on the priesthood? For indeed, we could never exhaust all that there is to say of the mysteries of Our Lord Jesus Christ – divine mysteries which are entirely beyond our comprehension. That is why, the more we delve into this mystery of the priesthood, the more it seems we would have to say and the farther to search into its most profound realities."
-        </div>
-      </div>
-      <a class="l-watch" href="https://bowlesfamilyfarm.sharepoint.com/:v:/s/WednesdayNightCatechism/IQCm0ZDy8GVXRaM-jm5GvsPZAaFO8Xcwfqxt_uoYHQIAa-s?e=2ZQNr6" target="_blank" rel="noopener noreferrer" aria-label="Watch this lesson (opens in a new tab)"><span class="l-play" aria-hidden="true">&#9658;</span> Watch</a>
-    </li>
-       
-    <li class="lesson" data-date="2026-05-06">
-      <span class="l-date">06 May 2026</span>
-      <div class="l-body">
-        <div class="l-title">Subject: The Sacrament of Extreme Unction</div>
-        <div class="l-note">
-Brief Catechism for Adults: Lesson 27, p. 98
-<br>Compendium of the Catholic Church: Part III, Section 3, Ch. 11, pgs. 284 - 287
-<br><br>Quote from the Compendium of the Catholic Faith: <br> 
-The Sacrament of Extreme Unction:
-     <br>  o Confers sanctifying grace
-     <br>  o Remits sin
-     <br>  o Effaces all remains of sin
-     <br>  o Consoles and strengthen the soul, especially for its final struggle and judgment.
-        </div>
-      </div>
-      <a class="l-watch" href="https://bowlesfamilyfarm.sharepoint.com/:v:/s/WednesdayNightCatechism/IQC8h6KRRKzISIzcf1v8FWFYAfuFIhxTJ6O5qA250rUlGcY?e=wrP5v3" target="_blank" rel="noopener noreferrer" aria-label="Watch this lesson (opens in a new tab)"><span class="l-play" aria-hidden="true">&#9658;</span> Watch</a>
-    </li>
+        <div class="l-title">The Church Founded on Peter</div>
 
-    <li class="lesson" data-date="2026-02-18">
-      <span class="l-date">18 Feb 2026</span>
-      <div class="l-body">
-        <div class="l-title">Subject: The Pope, Vicar of Christ.</div>
-        <div class="l-note">
-Brief Catechism for Adults: Lesson 18, p. 59 
-<br>Compendium of the Catholic Church: Part 1, Section 3, Ch. 16, pgs. 87
-<br><br>
-"And I say to thee: That thou art Peter: and upon this rock I will build my Church, and the gates of hell shall not prevail against it." Matthew 16.18 </div>
-      </div>
-      <a class="l-watch" href="https://bowlesfamilyfarm.sharepoint.com/:v:/s/WednesdayNightCatechism/IQCdMbKBJJGtRrdDZXpRaXiMAXlOebbKvr2V98R2ujmLOiQ?e=3tCVc8" target="_blank" rel="noopener noreferrer" aria-label="Watch this lesson (opens in a new tab)"><span class="l-play" aria-hidden="true">&#9658;</span> Watch</a>
-    </li>
-
-   <li class="lesson" data-date="2025-01-22">
-      <span class="l-date">22 January 2025</span>
-      <div class="l-body">
-        <div class="l-title">Yest of All Tests</div>
-        <div class="l-note">A test to test the maker of tests</div>
-
+        <!-- optional: reference materials for this lesson -->
         <div class="l-resources">
           <span class="l-res-label">Resources</span>
           <ul>
-            <li>resource 1</li>
-            <li>resource 2</li>
+            <li>Brief Catechism for Adults — Lesson 18, p.&nbsp;59</li>
+            <li>Compendium of the Catholic Church — Part 1, Section 3, Ch.&nbsp;16, p.&nbsp;87</li>
           </ul>
         </div>
 
+        <!-- optional: quote or verse (citation first, then the text) -->
         <div class="l-verse">
-          &ldquo;Insert a Quote Here&rdquo;
-          <cite>this is the quote source</cite>
+          <cite>Matthew 16:18</cite>
+          &ldquo;And I say to thee: That thou art Peter; and upon this rock I will
+          build my Church, and the gates of hell shall not prevail against it.&rdquo;
         </div>
       </div>
-      <a class="l-watch" href="#REPLACE-WITH-VIDEO-URL" target="_blank" rel="noopener noreferrer" aria-label="Watch: Yest of All Tests (opens in a new tab)"><span class="l-play" aria-hidden="true">&#9658;</span> Watch</a>
+      <a class="l-watch" href="#REPLACE-WITH-VIDEO-URL" target="_blank" rel="noopener noreferrer" aria-label="Watch: The Church Founded on Peter (opens in a new tab)"><span class="l-play" aria-hidden="true">&#9658;</span> Watch</a>
     </li>
-       
+    <!-- ===== end lesson ===== -->
+
+    <li class="lesson" data-date="2026-05-29">
+      <span class="l-date">29 May 2026</span>
+      <div class="l-body">
+        <div class="l-title">Lesson title goes here</div>
+      </div>
+      <a class="l-watch" href="#REPLACE-WITH-VIDEO-URL" target="_blank" rel="noopener noreferrer" aria-label="Watch this lesson (opens in a new tab)"><span class="l-play" aria-hidden="true">&#9658;</span> Watch</a>
+    </li>
+
+    <li class="lesson" data-date="2026-05-22">
+      <span class="l-date">22 May 2026</span>
+      <div class="l-body">
+        <div class="l-title">Lesson title goes here</div>
+      </div>
+      <a class="l-watch" href="#REPLACE-WITH-VIDEO-URL" target="_blank" rel="noopener noreferrer" aria-label="Watch this lesson (opens in a new tab)"><span class="l-play" aria-hidden="true">&#9658;</span> Watch</a>
+    </li>
+
   </ol>
 
   <!-- ===================== COLOPHON ===================== -->
@@ -376,5 +378,26 @@ Brief Catechism for Adults: Lesson 18, p. 59
   </section>
 
 </main>
+<script>
+  (function(){
+    var box = document.getElementById('lessonSearch');
+    var empty = document.getElementById('searchEmpty');
+    if(!box) return;
+    var lessons = Array.prototype.slice.call(document.querySelectorAll('li.lesson'));
+
+    box.addEventListener('input', function(){
+      var q = box.value.trim().toLowerCase();
+      var anyShown = false;
+      lessons.forEach(function(li){
+        // match against the lesson's visible text (title, date, resources, verse)
+        var text = li.textContent.toLowerCase();
+        var match = q === '' || text.indexOf(q) !== -1;
+        li.style.display = match ? '' : 'none';
+        if(match) anyShown = true;
+      });
+      empty.hidden = anyShown;
+    });
+  })();
+</script>
 </body>
 </html>
